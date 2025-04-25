@@ -1,0 +1,59 @@
+body {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    height: 65vh;
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center  ;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.5px;                 ;
+}
+
+.name {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+
+}
+
+.email {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+.password {
+    margin-bottom:20px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    
+}
+
+.role {
+    margin-bottom: 20px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    
+}
+
+.button {
+    border-style: none;
+    height: 30px;
+    width: 80px;
+    background-color: cadetblue;
+
+}

@@ -1,0 +1,142 @@
+body {
+    display: flex;
+    flex: start;
+}
+
+.heading {
+    text-align: center;
+}
+.options {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+}
+
+.create_book {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        width: 200px;
+        background-color: deepskyblue;
+        border-style: solid;
+       border-width: 1px; 
+     border-color: black;
+        
+    
+}
+
+.create_student {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background-color: deepskyblue;
+    border-style: solid;
+    border-width: 1px; 
+  border-color: black;
+}
+
+.list_book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background-color: deepskyblue;
+    border-style: solid;
+    border-width: 1px; 
+  border-color: black;
+}
+
+.list_student {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background-color: deepskyblue;
+    border-style: solid;
+    border-width: 1px; 
+  border-color: black;
+}
+
+.issue_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background-color: deepskyblue;
+    border-style: solid;
+    border-width: 1px; 
+  border-color: black;
+}
+
+.issue_list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background-color: deepskyblue;
+    border-style: solid;
+    border-width: 1px; 
+  border-color: black;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background-color: deepskyblue;
+    border-style: solid;
+    border-width: 1px; 
+  border-color: black;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background-color: deepskyblue;
+    border-style: solid;
+    border-width: 1px; 
+  border-color: black;
+}
+
+.options a:hover{
+    text-decoration: none;
+    color: black;
+} 
+.create_book a{
+    text-decoration:none;
+    font-size: larger;
+}
+.create_student a{
+    text-decoration: none;
+}
+.list_book a{
+    text-decoration: none;
+}
+.list_student a{text-decoration: none;}
+.issue_form a{text-decoration: none;}
+.issue_list a{text-decoration: none;}
+.status a{text-decoration: none;}
+.logout a{text-decoration: none;}
+
+.spotlight {
+        background-color: aliceblue;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        height: 97vh;
+}
+

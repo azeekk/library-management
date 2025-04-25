@@ -1,0 +1,75 @@
+body {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    height: 65vh;
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center  ;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.5px;                 ;
+}
+
+.title {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+
+}
+
+.author {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+.publisher_name {
+    margin-bottom:20px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    
+}
+
+.published_year {
+    margin-bottom: 20px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    
+}
+
+.cover_page_photo {
+    margin-bottom: 20px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    
+}
+
+.price {
+    margin-bottom: 20px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    
+}
+
+.button {
+    border-style: none;
+    height: 30px;
+    width: 80px;
+    background-color: cadetblue;
+
+}

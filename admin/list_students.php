@@ -14,6 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
         foreach($result as $row) {
             $students[] = $row;
+            echo '<script>console.log(' . json_encode($row) . ');</script>';
   }
 }else{
     echo"no student found";
@@ -40,7 +41,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             <th>date-of-birth</th>
         </tr>
 
-        <>
             <?php if(!empty($students))  :?>
                 <?php foreach($students as $student) : ?>
                     <tr>
@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                     <td><?= $student['contact_num'] ?></td>
                     <td><?= $student['email'] ?></td>
                     <td><?= $student['date_of_birth'] ?></td>
-                    <td><a href="edit_student.php? id=?= $student['extra_id']" ?>Edit</a></td>
+                    <td><a class="btn btn-primary" href="edit_student.php?guid=<?= $student['guid'] ?>">Edit</a></td>
                 </tr>
                     <?php endforeach; ?>
                     <?php else : ?>

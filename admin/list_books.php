@@ -7,12 +7,14 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 $books = [];
 
 $sql = "SELECT *  FROM  books";
+
 $result = mysqli_query($connect, $sql);
 
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $books[] = $row;
+        echo '<script>console.log(' . json_encode($row) . ');</script>';
     }
 } else {
     echo "No books found.";
@@ -54,7 +56,8 @@ $connect->close();
                     <td><?= $book['publisher_name'] ?></td>
                     <td><?= $book['published_year'] ?></td>
                     <td><?= $book['book_price'] ?></td>
-                    <td><a href="edit_book.php?= id? = $book['extra_id']" ?> Edit</a></td>
+                    <td><a class="btn btn-primary" href="edit_book.php?guid=<?= $book['guid'] ?>">Edit</a></td>
+                   
                 </tr>
         <?php endforeach;?>
                  

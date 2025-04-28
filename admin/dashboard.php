@@ -39,15 +39,7 @@
     </div>
     <div class="spotlight">
         <h1 class="heading1">Library Management</h1>
-        <div class="card">
-     <div class="card-body">
-       <h5 class="card-title">Card Title</h5>
-       <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
-       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-       <a href="#" class="card-link">Card Link 1</a>
-       <a href="#" class="card-link">Card Link 2</a>
-     </div>
-   </div>
+       
     </div>
 </body>
 </html>

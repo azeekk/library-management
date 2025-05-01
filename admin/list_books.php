@@ -10,7 +10,6 @@ $sql = "SELECT *  FROM  books";
 
 $result = mysqli_query($connect, $sql);
 
-
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $books[] = $row;

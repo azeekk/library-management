@@ -12,7 +12,7 @@ if(empty($username) || empty($email) || empty($password)){
     exit;
 }else{
 
-    $sql = "insert into admin(username,email,password )VALUES('$username','$email','$password')";
+    $sql = "insert into admin(name,email,password )VALUES('$username','$email','$password')";
 
     $result = mysqli_query($connect,$sql);
 

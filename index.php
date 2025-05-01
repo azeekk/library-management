@@ -1,7 +1,7 @@
 <?php
 
 include("db.php");
-include("admin/dashboard.php");
+include("login.php");
 
 
 ?>

@@ -5,12 +5,14 @@ include("../db.php");
 $error_message = "";
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $guid = uniqid('book_', true);
+    $id = $_POST['id'];
     $title = $_POST['title'];
     $author = $_POST['author'];
     $publisher_name = $_POST['publisher_name'];
     $published_year = $_POST['published_year'];
     $price = $_POST['price'];
-    $guid = uniqid('book_', true);
+    
 
 if(empty(($title))){
         $error_message = 'title required';
@@ -42,7 +44,7 @@ if(empty(($title))){
                 
 
     
-                $sql = "insert into books(title,author,publisher_name,published_year,cover_page_photo,book_price,guid)VALUES('$title','$author','$publisher_name','$published_year','$photo_name','$price','$guid')";
+                $sql = "insert into books(id,book_uuid,title,author,publisher_name,published_year,cover_photo_url,book_price)VALUES('$id','$guid','$title','$author','$publisher_name','$published_year','$photo_path','$price')";
             
             echo '<script>console.log(' . json_encode($sql) . ');</script>';
             var_dump($sql);
@@ -92,20 +94,27 @@ if(empty(($title))){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Register Book</title>
 </head>
 <body  class="h-100 d-flex justify-content-center align-items-center flex-column" >
-    <h1>Register Book</h1>
+<div class="d-flex vh-100 vw-100 flex-column p-2 ">
+<div class="d-flex h-20 justify-content-start">
+<a href="#sidebar" class="d-block mt-2 pl-2"  data-bs-toggle="offcanvas" role="button" aria-controls="sidebar"><i class="bi bi-list" style="font-size:3rem;"   ></i></a>
+</div>
 
-    <?php if (!empty($error_message)): ?>
-    <div class="alert alert-danger w-50" role="alert">
-        <?php echo $error_message; ?>
-    </div>
+
+
+<div class="h-80 d-flex align-items-center justify-content-center flex-column">
+<h1>Register Book</h1>
+
+<?php if (!empty($error_message)): ?>
+<div class="alert alert-danger w-50" role="alert">
+    <?php echo $error_message; ?>
+</div>
 <?php endif; ?>
-
-
- 
 
     <form class="h-70 w-50 card p-3 d-flex justify-content-center align-items-center flex-column" action="create_and_edit_book.php" method="post" enctype="multipart/form-data">
         <div class="form-group d-flex flex-column">
@@ -145,6 +154,13 @@ if(empty(($title))){
     <input class="btn btn-primary"  type="submit">
     </div>
     </form>
+    </div>
+    </div>
+
+    <!-- offcanvas -->
+        <?php include("./components/offcanvas.php"); ?>
+    <!-- offcanvasend -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
 </body>

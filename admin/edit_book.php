@@ -1,9 +1,11 @@
 <?php
 include("../db.php");
-if(isset($_GET['guid'])){
-    $guid = $_GET['guid'];
 
-    $sql = "SELECT * FROM books WHERE guid = '$guid'";
+
+if(isset($_GET['book_uuid'])){
+    $guid = $_GET['book_uuid'];
+
+    $sql = "SELECT * FROM books WHERE book_uuid = '$guid'";
     $result = mysqli_query($connect,$sql);
     
 
@@ -15,15 +17,17 @@ if(isset($_GET['guid'])){
         $publisher_name = $row['publisher_name'];
         $published_year = $row['published_year'];
         $price = $row['book_price'];
-        $photo = $row['cover_page_photo'];
+        $photo = $row['cover_photo_url'];  
+        echo'<script> console.log('. json_encode($row ).')</script>';
     } else {
         echo"Book not found";
         exit();
     }
 }
+ 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $guid = $_POST["guid"];
+    $guid = $_POST["book_uuid"];
     $title = $_POST['title'];
     $author = $_POST['author'];
     $publisher_name = $_POST['publisher_name'];
@@ -42,13 +46,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          publisher_name='$publisher_name', 
          published_year='$published_year',
          cover_page_photo = '$photo_name',
-         book_price='$price' WHERE guid = '$guid'";
+         book_price='$price' WHERE book_uuid = '$guid'";
     }else{
         $sql  = "UPDATE books SET title = '$title',
         author = '$author',
          publisher_name='$publisher_name',
          published_year='$published_year',
-        book_price='$price' WHERE guid = '$guid'";
+        book_price='$price' WHERE book_uuid = '$guid'";
     }
 
     $result = mysqli_query($connect, $sql);
@@ -69,11 +73,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Register Book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <title>Register Book</title>
 </head>
 <body  class="h-100 d-flex justify-content-center align-items-center flex-column" >
-    <h1>edit Book</h1>
+    <div class="d-flex vh-100 vw-100 flex-column p-2 ">
+<div class="d-flex h-20 justify-content-start">
+<a href="#sidebar" class="d-block mt-2 pl-2"  data-bs-toggle="offcanvas" role="button" aria-controls="sidebar"><i class="bi bi-list" style="font-size:3rem;"   ></i></a>
+</div>
+<div class="h-80 d-flex align-items-center justify-content-center flex-column">
+    <h1>Edit Book</h1>
 
     <?php if (!empty($error_message)): ?>
     <div class="alert alert-danger w-50" role="alert">
@@ -100,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <div class="form-group d-flex flex-column">
     <label for="published_year">published year</label>
-    <input class="form-control" type="number" name="published_year" value="<?php echo htmlspecialchars($published_year)?>">
+    <input class="form-control" type="number" name="published_year" value="<?php echo htmlspecialchars($published_year ?? '');?>">
     </div>
 
     <div class=" form-group d-flex flex-column ">
@@ -108,18 +117,63 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <input class="form-control" type="file" accept="image/*" name="photo">
     </div>
 
-    <div class="form-group d-flex flex-column">
+    <div class="form-group d-flex flex-column"> 
     <label for="price">price</label>
-    <input class="form-control" type="number" name="price" value="<?php echo htmlspecialchars($price)?>">
+    <input class="form-control" type="number" name="book_price" value="<?php echo htmlspecialchars($price ?? '')?>">
     </div>
  
-    <input type="hidden" name="guid" value="<?php echo htmlspecialchars($guid); ?>">
+    <input type="hidden" name="book_uuid" value="<?php echo htmlspecialchars($guid); ?>">
     
     <div class="form-group d-flex flex-column">
     <input class="btn btn-primary"  type="submit" >
     </div>
-    </form>
+    </form> 
+    </div>
+    </div>
 
+     <!-- offcanvas -->
+
+     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebar-label">
+
+<div class="offcanvas-header">
+    <div class="offcanvas-body">
+
+    <div class="options">
+<h1 class="heading">Dashboard</h1>
+<div class="p-2 border-top border-bottom"> 
+    <a class="text-decoration-none text-dark" href="create_and_edit_book.php">create book</a>
+</div>
+<div class="p-2 border-top border-bottom"> 
+    <a class="text-decoration-none text-dark" href="create_and_edit_student.php">create student</a>
+</div>
+<div class="p-2 border-top border-bottom"> 
+    <a class="text-decoration-none text-dark" href="list_books.php">list books</a>
+</div>
+<div class="p-2 border-top border-bottom"> 
+    <a class="text-decoration-none text-dark" href="list_students.php">list students</a>
+</div>
+<div class="p-2 border-top border-bottom"> 
+    <a class="text-decoration-none text-dark" href="book_issue_form.php"> issue book</a>
+</div>
+<div class="p-2 border-top border-bottom">  
+    <a class="text-decoration-none text-dark" href="book_issue_list"> list issued books</a>
+</div>
+<div class="p-2 border-top border-bottom"> 
+    <a class="text-decoration-none text-dark" href="book_return_status">return status</a>
+</div>
+<div class="p-2 border-top border-bottom" style="margin-top:300px;"> 
+<a class="text-decoration-none text-dark " href="logout.php" >Logout</a>
+</div>
+</div>
+
+    </div>
+</div>
+
+</div>
+
+<!-- offcanvasend -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -2,11 +2,11 @@
 
 include("../db.php");
 
-if(isset($_GET['guid'])){
+if(isset($_GET['book_uuid'])){
 
- $guid = $_GET['guid'];
+ $guid = $_GET['book_uuid'];
 
-$sql = "SELECT * FROM students WHERE guid = '$guid' ";
+$sql = "SELECT * FROM students WHERE book_uuid = '$guid' ";
 $result = mysqli_query($connect, $sql);
 
 
@@ -26,18 +26,13 @@ if($row = mysqli_fetch_assoc($result) ){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $guid = $_POST ['guid'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $contact_number = $_POST['contact_num'];
     $class = $_POST['class'];
     $birth_date = $_POST['date_of_birth'];
 
-
-    if(empty($id)){
-        $error_message = "id required";
-    }
-    elseif(empty($name)){
+if(empty($name)){
        
        $error_message = "name required";
         

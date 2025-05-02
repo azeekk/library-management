@@ -7,9 +7,9 @@ $error_message = "";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $name = $_POST["name"];
     $email = $_POST["email"];
-    $contact_number = $_POST["contact_number"];
-    $class = $_POST["class"];
-    $birth_date = $_POST["birth_date"];
+    $course = $_POST["course"];
+    $year = $_POST["year"];
+    $birth_date = $_POST["datw"];
     $guid = uniqid('book_', true);
 
 
@@ -62,7 +62,16 @@ elseif(empty($name)){
     <title>Document</title>
 </head>
 <body class="h-100 d-flex justify-content-center align-items-center flex-column">
-    
+<div class="d-flex vh-100 vw-100 flex-column p-2 ">
+
+
+<div class="d-flex h-20 justify-content-start">
+<a href="#sidebar" class="d-block mt-2 pl-2"  data-bs-toggle="offcanvas" role="button" aria-controls="sidebar"><i class="bi bi-list" style="font-size:3rem;"   ></i></a>
+</div>
+
+<div class="h-80 d-flex align-items-center justify-content-center flex-column">
+
+
 <h1>Register Student </h1>
 
 <?php if (!empty($error_message)): ?>
@@ -97,12 +106,15 @@ elseif(empty($name)){
     <label for="birth_date"> date of birth</label>
     <input class="form-control" type="date" name="birth_date">
     </div>
-    
+
     <input class="btn btn-primary" type="submit">
 
     </form>
-
- 
+    </div>
+</div>
+ <!-- offcanvas -->
+  <?php include("./components/offcanvas.php"); ?>
+  <!-- offcanvas end -->
 
 
 </body> 

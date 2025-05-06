@@ -44,7 +44,7 @@ if(empty(($title))){
                 
 
     
-                $sql = "insert into books(id,book_uuid,title,author,publisher_name,published_year,cover_photo_url,book_price)VALUES('$id','$guid','$title','$author','$publisher_name','$published_year','$photo_path','$price')";
+                $sql = "insert into books(id,guid,title,author,publisher_name,published_year,image,price)VALUES('$id','$guid','$title','$author','$publisher_name','$published_year','$photo_path','$price')";
             
             echo '<script>console.log(' . json_encode($sql) . ');</script>';
             var_dump($sql);
@@ -57,8 +57,8 @@ if(empty(($title))){
                                            
             }else{
                 
-               if (mysqli_affected_rows($connect) > 0) {
-                header("Location:list_books.php");
+               if (mysqli_affected_rows(mysql: $connect) > 0) {
+                header("Location:http://localhost:5173/library-management/react-ui/");
                 echo '<script>console.log(' . json_encode($sql) . ');</script>';
                 echo "Book successfully registered!";
                
@@ -84,7 +84,7 @@ if(empty(($title))){
    
 
 }
-         
+          
 
 
 ?>
@@ -119,7 +119,7 @@ if(empty(($title))){
     <form class="h-70 w-50 card p-3 d-flex justify-content-center align-items-center flex-column" action="create_and_edit_book.php" method="post" enctype="multipart/form-data">
         <div class="form-group d-flex flex-column">
 
-    <input type="hidden" name="id" value="5">   
+    <input type="hidden" name="id" value="id">   
 
     <label for="title">Title</label>
     <input class="form-control"  type="text" name="title"  >

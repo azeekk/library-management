@@ -5,7 +5,7 @@ include("../db.php");
 if(isset($_GET['book_uuid'])){
     $guid = $_GET['book_uuid'];
 
-    $sql = "SELECT * FROM books WHERE book_uuid = '$guid'";
+    $sql = "SELECT * FROM books WHERE guid = '$guid'";
     $result = mysqli_query($connect,$sql);
     
 
@@ -16,8 +16,8 @@ if(isset($_GET['book_uuid'])){
         $author = $row['author'];
         $publisher_name = $row['publisher_name'];
         $published_year = $row['published_year'];
-        $price = $row['book_price'];
-        $photo = $row['cover_photo_url'];  
+        $price = $row['price'];
+        $photo = $row['image'];  
         echo'<script> console.log('. json_encode($row ).')</script>';
     } else {
         echo"Book not found";
@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $author = $_POST['author'];
     $publisher_name = $_POST['publisher_name'];
     $published_year = $_POST['published_year'];
-    $price = $_POST['book_price'];
+    $price = $_POST['price'];
 
     if(isset($_FILES['photo'])&&$_FILES['photo']['error']==0){
 
@@ -45,14 +45,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         author = '$author',
          publisher_name='$publisher_name', 
          published_year='$published_year',
-         cover_page_photo = '$photo_name',
-         book_price='$price' WHERE book_uuid = '$guid'";
+         image = '$photo_name',
+         price='$price' WHERE guid = '$guid'";
     }else{
         $sql  = "UPDATE books SET title = '$title',
         author = '$author',
          publisher_name='$publisher_name',
          published_year='$published_year',
-        book_price='$price' WHERE book_uuid = '$guid'";
+        price='$price' WHERE guid = '$guid'";
     }
 
     $result = mysqli_query($connect, $sql);
@@ -114,12 +114,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <div class=" form-group d-flex flex-column ">
     <label for="photo">Cover Photo</label>
-    <input class="form-control" type="file" accept="image/*" name="photo">
+    <input class="form-control" type="file" accept="image/*" name="image">
     </div>
 
     <div class="form-group d-flex flex-column"> 
     <label for="price">price</label>
-    <input class="form-control" type="number" name="book_price" value="<?php echo htmlspecialchars($price ?? '')?>">
+    <input class="form-control" type="number" name="price" value="<?php echo htmlspecialchars($price ?? '')?>">
     </div>
  
     <input type="hidden" name="book_uuid" value="<?php echo htmlspecialchars($guid); ?>">

@@ -64,8 +64,8 @@ $connect->close();
                     <td><?= $book['author'] ?></td>
                     <td><?= $book['publisher_name'] ?></td>
                     <td><?= $book['published_year'] ?></td>
-                    <td><?= $book['book_price'] ?></td>
-                    <td><a class="btn btn-primary" href="edit_book.php?book_uuid=<?= $book['book_uuid'] ?>">Edit</a></td>
+                    <td><?= $book['price'] ?></td>
+                    <td><a class="btn btn-primary" href="edit_book.php?book_uuid=<?= $book['guid'] ?>">Edit</a></td>
                    
                 </tr>
         <?php endforeach;?>

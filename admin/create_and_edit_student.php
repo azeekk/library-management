@@ -5,18 +5,19 @@ include("../db.php");
 $error_message = "";
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $id = $_POST["id"];
     $name = $_POST["name"];
     $email = $_POST["email"];
-    $course = $_POST["course"];
-    $year = $_POST["year"];
-    $birth_date = $_POST["datw"];
+    $class = $_POST["class"];
+    $contact_number = $_POST["contact_number"];
+    $department = $_POST["department"];
+    $date_of_birth = $_POST["date_of_birth"];
     $guid = uniqid('book_', true);
 
 
 if(empty($id)){
-    $error_message = "id required";
-}
-elseif(empty($name)){
+    $error_message .= 'Id required';
+}elseif(empty($name)){
    
    $error_message = "name required";
     
@@ -29,12 +30,12 @@ elseif(empty($name)){
 }elseif (empty($class)){
     $error_message = "class required";
     
-}elseif(empty($birth_date)) {
+}elseif(empty($date_of_birth)) {
     $error_message = "birth date required";
         
 }else{
 
-    $sql = "insert into students(name,class,contact_num,email,date_of_birth,guid)VALUES('$name','$class','$contact_number','$email','$birth_date','$guid')";
+    $sql = "insert into students(id,name,email,class,contact_number,department,date_of_birth,guid)VALUES('$id','$name','$email','$class','$contact_number','$department','$date_of_birth','$guid')";
     $result = mysqli_query($connect, $sql);
     if(!$result){
         echo "error : " . mysqli_error( $connect); 
@@ -83,6 +84,10 @@ elseif(empty($name)){
 
     <form class="h-70 w-50 card p-3 d-flex justify-content-center align-items-center flex-column" action="create_and_edit_student.php" method="post">
     <div class="form-group d-flex flex-column">
+
+    <input type="hidden" name="id" value="<?php echo uniqid('stu_', true); ?>">
+
+
     <label for="title">student name</label>
     <input class="form-control"  type="text" name="name"  >
     </div>
@@ -102,9 +107,15 @@ elseif(empty($name)){
     <input class="form-control" type="email" name="email">
     </div>
 
+    
+    <div class="form-group d-flex flex-column">
+    <label for="department"> Department</label>
+    <input class="form-control" type="text" name="department">
+    </div>
+
     <div class="form-group d-flex flex-column">
     <label for="birth_date"> date of birth</label>
-    <input class="form-control" type="date" name="birth_date">
+    <input class="form-control" type="date" name="date_of_birth">
     </div>
 
     <input class="btn btn-primary" type="submit">

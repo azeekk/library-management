@@ -2,11 +2,13 @@
 
 include("../db.php");
 
-if(isset($_GET['book_uuid'])){
+$error_message = "";
 
- $guid = $_GET['book_uuid'];
+if(isset($_GET['guid'])){
 
-$sql = "SELECT * FROM students WHERE book_uuid = '$guid' ";
+ $guid = $_GET['guid'];
+
+$sql = "SELECT * FROM students WHERE guid = '$guid' ";
 $result = mysqli_query($connect, $sql);
 
 
@@ -14,10 +16,11 @@ $result = mysqli_query($connect, $sql);
 if($row = mysqli_fetch_assoc($result) ){
     $name = $row["name"];
     $email = $row["email"];
-    $contact_number = $row["contact_num"];
+    $contact_number = $row["contact_number"];
     $class = $row["class"];
+    $department = $row["department"];
     $birth_date = $row["date_of_birth"]; 
-    echo'<script>console.log(' . json_encode($row) . '); </script>';
+    echo'<script>console.log(' . json_encode($row) . '); </script>';    
 }else{
     echo"Student Not Found";
     exit();
@@ -26,14 +29,16 @@ if($row = mysqli_fetch_assoc($result) ){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $guid = $_POST['guid'];
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $contact_number = $_POST['contact_num'];
+    $contact_number = $_POST['contact_number'];
     $class = $_POST['class'];
+    $department = $_POST['department'];
     $birth_date = $_POST['date_of_birth'];
 
 if(empty($name)){
-       
+
        $error_message = "name required";
         
     }elseif(empty($email)){
@@ -52,16 +57,17 @@ if(empty($name)){
     
         $sql = "UPDATE students SET name = '$name',
          class = '$class',
-         contact_num = '$contact_number',
+         contact_number = '$contact_number',
          email = '$email',
-         date_of_birth = '$birth_date' ";
+         department = '$department',
+         date_of_birth = '$birth_date' WHERE guid = '$guid' ";
 
 
         $result = mysqli_query($connect, $sql);
         if(!$result){
             echo "error : " . mysqli_error( $connect); 
         }else{
-            header("Location: list_books.php");
+            header("Location: list_students.php");
             echo "Student has been Updated";
         }
         
@@ -84,7 +90,10 @@ if(empty($name)){
     
 <h1>Edit Student </h1>
     <form class="h-70 w-50 card p-3 d-flex justify-content-center align-items-center flex-column" action="edit_student.php" method="post">
-     
+
+    <input type="hidden" name="guid" value="<?php echo htmlspecialchars($guid); ?>">
+
+
     <div class="form-group">
     <label for="title"> Name</label>
     <input class="form-control"  type="text" name="name" value="<?php echo htmlspecialchars($name) ?>" >
@@ -107,8 +116,13 @@ if(empty($name)){
     </div>
 
     <div class="form-group">
+    <label for="department"> Department</label>
+    <input class="form-control" type="text" name="department" value="<?php echo htmlspecialchars($department)?>">
+    </div>
+
+    <div class="form-group">
     <label for="birth_date"> date of birth</label>
-    <input class="form-control" type="date" name="birth_date" value="<?php echo htmlspecialchars($birth_date)?>">
+    <input class="form-control" type="date" name="date_of_birth" value="<?php echo htmlspecialchars($birth_date)?>">
     </div>
 
     <input class="btn btn-primary" type="submit">

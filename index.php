@@ -1,8 +1,7 @@
 <?php
 
 include("db.php");
-include("login.php");
-include("offcanvas.php"); 
+include("login.php"); 
 
 ?>
 
@@ -15,6 +14,9 @@ include("offcanvas.php");
     <title>Document</title>
 </head>
 <body>
+
+<iframe src="react-ui" width="100%" height="400px" style="border: none;"></iframe>
+
     
 </body>
 </html>

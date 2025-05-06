@@ -44,10 +44,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             <?php if(!empty($students))  :?>
                 <?php foreach($students as $student) : ?>
                     <tr>
-                    <td><?= $student['student_id'] ?></td>
+                    <td><?= $student['id'] ?></td>
                     <td><?= $student['name'] ?></td>
                     <td><?= $student['class'] ?></td>
-                    <td><?= $student['contact_num'] ?></td>
+                    <td><?= $student['contact_number'] ?></td>
                     <td><?= $student['email'] ?></td>
                     <td><?= $student['date_of_birth'] ?></td>
                     <td><a class="btn btn-primary" href="edit_student.php?guid=<?= $student['guid'] ?>">Edit</a></td>
